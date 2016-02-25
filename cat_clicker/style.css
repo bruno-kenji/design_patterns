@@ -1,0 +1,10 @@
+.cat img {
+  max-height: 150px;
+  max-width: 200px;
+}
+
+.clearfix {
+  content: "";
+  display: table;
+  clear: both;
+}
