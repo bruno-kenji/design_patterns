@@ -3,9 +3,28 @@
   padding: 0 30px;
 }
 
-.cat img {
+.cat-wrapper h3 {
+  text-align: center;
+}
+
+.cat-wrapper .cat {
+  height: 150px;
+  width: 250px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cat-wrapper .clicks {
+  text-align: center;
+}
+
+.cat-wrapper .ativou {
+  -webkit-animation: blink 0.3s ease-in 1;
+}
+
+.cat-wrapper .cat img {
   max-height: 150px;
-  max-width: 200px;
+  max-width: 250px;
   display: inline-block;
 }
 
@@ -13,4 +32,10 @@
   content: "";
   display: table;
   clear: both;
+}
+
+@-webkit-keyframes blink {
+  0% {color: black;}
+  50% {color: yellow;}
+  100% {color:black;}
 }
