@@ -25,6 +25,8 @@ $(document).ready(function() {
 
       $('.cat-wrapper').find('h3').html(self.$hiddenCatName.html());
       $('.cat-wrapper').find('#clicks').html(self.$hiddenCatClicks.html());
+
+      updateImages(e.target.innerHTML);
     });
 
     $('.cat-pic').on("click", function(e) {
@@ -50,5 +52,26 @@ $(document).ready(function() {
     setTimeout(function() {
       $counter.removeClass('ativou');
     }, 300 )
+  }
+
+  function updateImages(catName) {
+    this.$catImg = $('.cat-wrapper').find('img');
+    switch(catName) {
+      case "Kitty 0":
+        this.$catImg.attr('src', 'https://goo.gl/2YWnjj');
+        break;
+      case "Kitty 1":
+        this.$catImg.attr('src', 'https://goo.gl/2Wm1Qb');
+        break;
+      case "Kitty 2":
+        this.$catImg.attr('src', 'https://goo.gl/z9QPEZ');
+        break;
+      case "Kitty 3":
+        this.$catImg.attr('src', 'http://goo.gl/dpdWr3');
+        break;
+      case "Kitty 4":
+        this.$catImg.attr('src', 'http://goo.gl/ZWQUtT');
+        break;
+    }
   }
 });

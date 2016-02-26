@@ -27,14 +27,14 @@
 }
 
 .cat-wrapper .cat-pic {
-  height: 250px;
-  width: 400px;
+  height: 300px;
+  width: 500px;
   text-align: center;
   cursor: pointer;
 }
 
 .cat-wrapper .clicks {
-  text-align: center !important;
+  text-align: center;
 }
 
 .cat-wrapper .ativou {
@@ -42,8 +42,8 @@
 }
 
 .cat-wrapper .cat-pic img {
-  max-height: 250px;
-  max-width: 400px;
+  max-height: 300px;
+  max-width: 500px;
   display: inline-block;
 }
 
