@@ -1,19 +1,36 @@
 $(document).ready(function() {
-  var self = this;
-
   /* Primary Functions */
   function createElements() {
-    this.$counter1 = $('<div>').attr('id','counter1').addClass('counter').html(0).hide();
-    this.$counter2 = $('<div>').attr('id','counter2').addClass('counter').html(0).hide();
+    var numOfCats = 5;
+    this.$catLink = [];
 
-    $('#cat1').append($counter1);
-    $('#cat2').append($counter2);
+    for (var i = 0; i < numOfCats; i++) {
+      this.$catLink[i] = $('<li>').addClass('cat-link').attr('id', 'cat-link-' + i).attr('catName', 'Kitty ' + i).html('Kitty ' + i);
+
+      $('.cat-list').append(this.$catLink[i]);
+    }
+
+    this.$hiddenCatName = $("<div>").attr('id', 'hidden-cat-name').html("").hide();
+    this.$hiddenCatClicks = $("<div>").attr('id', 'hidden-cat-clicks').html("").hide();
+
+    $('.cat-wrapper').append(this.$hiddenCatName);
+    $('.cat-wrapper').append(this.$hiddenCatClicks);
   }
 
   function setupBindings() {
-    $('.cat').on("click", function() {
+    var self = this;
+
+    $('.cat-link').on("click", function(e) {
+      self.$hiddenCatName.html(e.target.innerHTML);
+
+      $('.cat-wrapper').find('h3').html(self.$hiddenCatName.html());
+      $('.cat-wrapper').find('#clicks').html(self.$hiddenCatClicks.html());
+    });
+
+    $('.cat-pic').on("click", function(e) {
       increaseCounter($(this));
-      counterAnimation($(this))
+      counterAnimation($(this));
+      self.$catClicks = $("div").attr('id', 'hidden-cat-clicks').html
     });
   }
   createElements();

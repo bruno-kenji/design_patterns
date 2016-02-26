@@ -1,30 +1,49 @@
+.list {
+  float: left;
+  display: inline-block;
+  padding-right: 30px;
+  border-right: 2px solid #004d1b;
+  height: 100%;
+}
+
+.list .cat-list li {
+  cursor: pointer;
+  font-weight: 700;
+  list-style-type: none;
+  line-height: 20px;
+}
+
+.list .cat-list li:hover {
+  color: #004d1b;
+}
+
 .cat-wrapper {
   display: inline-block;
-  padding: 0 30px;
+  margin-left: 10%;
 }
 
 .cat-wrapper h3 {
   text-align: center;
 }
 
-.cat-wrapper .cat {
-  height: 150px;
-  width: 250px;
+.cat-wrapper .cat-pic {
+  height: 250px;
+  width: 400px;
   text-align: center;
   cursor: pointer;
 }
 
 .cat-wrapper .clicks {
-  text-align: center;
+  text-align: center !important;
 }
 
 .cat-wrapper .ativou {
   -webkit-animation: blink 0.3s ease-in 1;
 }
 
-.cat-wrapper .cat img {
-  max-height: 150px;
-  max-width: 250px;
+.cat-wrapper .cat-pic img {
+  max-height: 250px;
+  max-width: 400px;
   display: inline-block;
 }
 
