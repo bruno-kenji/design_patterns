@@ -3,7 +3,7 @@
   display: inline-block;
   padding-right: 30px;
   border-right: 2px solid #004d1b;
-  height: 100%;
+  height: 200%;
 }
 
 .list .cat-list li {
@@ -11,6 +11,15 @@
   font-weight: 700;
   list-style-type: none;
   line-height: 20px;
+}
+
+.list .cat-list .delete-cat {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.list .cat-list .delete-cat:hover {
+  color: #cc0000;
 }
 
 .list .cat-list li:hover {

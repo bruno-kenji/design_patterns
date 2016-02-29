@@ -19,6 +19,11 @@ $(document).ready(function() {
   }
 
   function setupBindings() {
+    $('#cat-pic').on("click", function(e) {
+      increaseCounter();      
+      counterAnimation($(this));
+    });
+    
     $('.cat-link').on("click", function(e) {
       var catName = e.target.innerHTML;
 
@@ -26,18 +31,13 @@ $(document).ready(function() {
       updateName(catName);
       updateImage(catName);
     });
-
-    $('#cat-pic').on("click", function(e) {
-      increaseCounter();      
-      counterAnimation($(this));
-    });
   }
 
   createElements();
   setupBindings();
 
   /* Secondary Functions */
-  function increaseCounter($el) {
+  function increaseCounter() {
     var clicks;
 
     this.$hiddenCat.attr('clicks') == "" ? clicks = 0 : clicks = parseInt(this.$hiddenCat.attr('clicks'));
@@ -46,8 +46,8 @@ $(document).ready(function() {
     $('.cat-wrapper').find('#clicks').html('Clicks: ' + this.$hiddenCat.attr('clicks'));
   }
 
-  function counterAnimation($el) {
-    var $counter = $el.closest('.cat-wrapper').find('#clicks');
+  function counterAnimation($catImg) {
+    var $counter = $catImg.closest('.cat-wrapper').find('#clicks');
 
     $counter.addClass('ativou');
     setTimeout(function() {
@@ -55,8 +55,8 @@ $(document).ready(function() {
     }, 300 )
   }
 
-  function updateCounter($el) {
-    this.$hiddenCat = $el;
+  function updateCounter($catLink) {
+    this.$hiddenCat = $catLink;
 
     $('.cat-wrapper').find('#clicks').html('Clicks: ' + this.$hiddenCat.attr('clicks'));
   }
