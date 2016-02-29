@@ -26,14 +26,14 @@
   text-align: center;
 }
 
-.cat-wrapper .cat-pic {
+.cat-wrapper #cat-pic {
   height: 300px;
   width: 500px;
   text-align: center;
   cursor: pointer;
 }
 
-.cat-wrapper .clicks {
+.cat-wrapper #clicks {
   text-align: center;
 }
 
@@ -41,7 +41,7 @@
   -webkit-animation: blink 0.3s ease-in 1;
 }
 
-.cat-wrapper .cat-pic img {
+.cat-wrapper #cat-pic img {
   max-height: 300px;
   max-width: 500px;
   display: inline-block;
