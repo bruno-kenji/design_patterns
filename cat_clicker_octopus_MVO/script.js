@@ -27,6 +27,7 @@ $(document).ready(function() {
 
       catWrapperView.init();
       catListView.init();
+      adminView.init();
     },
 
     getImgSrc: function(catName) {
@@ -67,7 +68,6 @@ $(document).ready(function() {
       model.currentCat.clickCount++;
       catWrapperView.updateCounter();
     }
-
   };
 
   var catListView = {
@@ -142,6 +142,33 @@ $(document).ready(function() {
       this.$catImg.find('img').attr('src', currentCat.imgSrc);
     }
   };
+
+  var adminView = {
+    init: function() {
+      this.$adminButton  = $('.admin-btn');
+      this.$adminMenu    = $('.admin-menu');
+      this.$adminList    = $('.admin-list');
+      this.$saveButton   = $('.admin-save-btn');
+      this.$cancelButton = $('.admin-cancel-btn');
+
+      this.setupBindings();
+      this.render();
+    },
+
+    setupBindings: function() {
+      var self = this;
+
+      this.$adminButton.on('click', function() {
+        self.$adminMenu.toggleClass('hide');
+      });
+      
+    },
+
+    render: function() {
+      var currentCat = octopus.getCurrentCat();
+
+    }
+  }
 
   octopus.init(5);
 });

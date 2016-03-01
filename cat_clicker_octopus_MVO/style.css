@@ -56,10 +56,50 @@
   display: inline-block;
 }
 
+.admin {
+  line-height: 30px;
+  margin-left: 150px;
+}
+
+.admin .admin-btn {
+  font-weight: 700;
+  font-size: 16px;
+  height: 35px;
+  width: 90px;
+  margin-left: 200px;
+}
+
+.admin .admin-list {
+  width: 450px;
+}
+
+.admin .admin-list li {
+  padding-right: 100px;
+  text-align: right;
+  list-style-type: none;
+}
+
+.admin .admin-list li input {
+  padding-left: 100px;
+}
+
+.admin-menu {
+  width: 450px;
+}
+
+.admin-menu-btns {
+  float: right;
+  margin-right: 50px;
+}
+
 .clearfix {
   content: "";
   display: table;
   clear: both;
+}
+
+.hide {
+  display: none;
 }
 
 @-webkit-keyframes blink {
