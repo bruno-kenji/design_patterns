@@ -49,9 +49,9 @@ $(document).ready(function() {
   function counterAnimation($catImg) {
     var $counter = $catImg.closest('.cat-wrapper').find('#clicks');
 
-    $counter.addClass('ativou');
+    $counter.addClass('activated');
     setTimeout(function() {
-      $counter.removeClass('ativou');
+      $counter.removeClass('activated');
     }, 300 )
   }
 
