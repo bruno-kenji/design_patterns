@@ -17,15 +17,38 @@ $(document).ready(function() {
   };
 
   var octopus = {
-
     init: function(numOfCats) {
       for(var i = 0; i < numOfCats; i++) {
-        model.add('Kitty ' + i, 'https://goo.gl/2YWnjj');
-      }
-      model.currentCat = model.cats[0];
+        var catName = 'Kitty ' + i;
+        var imgSrc = this.getImgSrc(catName);
 
-      catListView.init();
+        model.add(catName, imgSrc);
+      }
+
       catWrapperView.init();
+      catListView.init();
+    },
+
+    getImgSrc: function(catName) {
+      var imgSrc;
+      switch(catName) {
+        case "Kitty 0":
+          imgSrc = 'https://goo.gl/2YWnjj';
+          break;
+        case "Kitty 1":
+          imgSrc = 'https://goo.gl/2Wm1Qb';
+          break;
+        case "Kitty 2":
+          imgSrc = 'https://goo.gl/z9QPEZ';
+          break;
+        case "Kitty 3":
+          imgSrc = 'http://goo.gl/dpdWr3';
+          break;
+        case "Kitty 4":
+          imgSrc = 'http://goo.gl/ZWQUtT';
+          break;
+      }
+      return imgSrc;
     },
 
     getCats: function() {
@@ -34,6 +57,10 @@ $(document).ready(function() {
 
     getCurrentCat: function() {
       return model.currentCat;
+    },
+
+    setCurrentCat: function(cat) {
+      model.currentCat = cat;
     },
 
     increaseCounter: function() {
@@ -46,12 +73,33 @@ $(document).ready(function() {
   var catListView = {
 
     init: function() {
+      this.$catList = $('.cat-list');
 
+      this.render();
+    },
+
+    render: function() {
+      var cats = octopus.getCats();
+
+      this.$catList.empty();
+      for (var i = 0; i < cats.length; i++) {
+        var cat = cats[i];
+
+        var $catRow = $('<li>').addClass('.cat-link').html(cat.name);
+
+        $catRow.on('click', (function(cat) {
+          return function() {
+            octopus.setCurrentCat(cat);
+            catWrapperView.render();
+          }
+        })(cat));
+
+        this.$catList.append($catRow);
+      }
     }
   };
 
   var catWrapperView = {
-
     init: function() {
       this.$catWrapper = $('.cat-wrapper');
       this.$catImg     = $('#cat-pic');
