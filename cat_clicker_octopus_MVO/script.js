@@ -176,6 +176,11 @@ $(document).ready(function() {
       this.$adminButton.on('click', function() {
         self.$adminMenu.toggleClass('hide');
       });
+
+      this.$cancelButton.on('click', function() {
+        self.$adminMenu.addClass('hide');
+        self.render();
+      });
     },
 
     render: function() {
