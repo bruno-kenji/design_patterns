@@ -21,6 +21,8 @@ $(document).ready(function() {
   }
 
   function setupBindings() {
+    var self = this;
+
     $('#cat-pic').on("click", function() {
       increaseCounter();      
       counterAnimation($(this));
@@ -37,6 +39,11 @@ $(document).ready(function() {
 
     $('.admin-btn').on('click', function() {
       $('.admin-menu').toggleClass('hide');
+    });
+
+    $('.admin-cancel-btn').on('click', function() {
+      $('.admin-menu').addClass('hide');
+      updateAdminMenu(self.$hiddenCat);
     });
   }
 
@@ -64,8 +71,8 @@ $(document).ready(function() {
 
   function updateAdminMenu($catLink) {
     $('.admin-cat-name-input').val(this.$hiddenCatName.html());
-    $('.admin-img-src-input').val(this.$hiddenImgSrc.html());
-    $('.admin-clicks-input').val(this.$hiddenCat.attr('clicks'));
+    $('.admin-img-src-input') .val(this.$hiddenImgSrc.html());
+    $('.admin-clicks-input')  .val(this.$hiddenCat.attr('clicks'));
   }
 
   function updateCounter($catLink) {

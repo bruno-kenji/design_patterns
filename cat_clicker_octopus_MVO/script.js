@@ -1,3 +1,5 @@
+/* octopus is the controller equivalent */
+
 $(document).ready(function() {
 
   var model = {
@@ -130,7 +132,7 @@ $(document).ready(function() {
     updateCounter: function() {
       var currentCat = octopus.getCurrentCat();
 
-      this.$counter.html(currentCat.clickCount);
+      this.$counter.html('Clicks: ' + currentCat.clickCount.toString());
     },
 
     counterAnimation: function() {
@@ -145,7 +147,7 @@ $(document).ready(function() {
     render: function() {
       var currentCat = octopus.getCurrentCat();
 
-      this.$counter.html(currentCat.clickCount);
+      this.$counter.html('Clicks: ' + currentCat.clickCount.toString());
       this.$catName.html(currentCat.name);
       this.$catImg.find('img').attr('src', currentCat.imgSrc);
     }
