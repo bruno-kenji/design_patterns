@@ -11,15 +11,17 @@ $(document).ready(function() {
       $('.cat-list').append(this.$catLink[i]);
     }
 
-    this.$hiddenCat = $("<div>").attr('id', 'hidden-cat').html("").hide();
     this.$hiddenCatName = $("<div>").attr('id', 'hidden-cat-name').html("").hide();
+    this.$hiddenImgSrc  = $("<div>").attr('id', 'hidden-img-src').html("").hide();
+    this.$hiddenCat     = $("<div>").attr('id', 'hidden-cat').html("").hide();
 
-    $('.cat-wrapper').append(this.$hiddenCat);
     $('.cat-wrapper').append(this.$hiddenCatName);
+    $('.cat-wrapper').append(this.$hiddenImgSrc);
+    $('.cat-wrapper').append(this.$hiddenCat);
   }
 
   function setupBindings() {
-    $('#cat-pic').on("click", function(e) {
+    $('#cat-pic').on("click", function() {
       increaseCounter();      
       counterAnimation($(this));
     });
@@ -30,6 +32,11 @@ $(document).ready(function() {
       updateCounter($(this));
       updateName(catName);
       updateImage(catName);
+      updateAdminMenu($(this));
+    });
+
+    $('.admin-btn').on('click', function() {
+      $('.admin-menu').toggleClass('hide');
     });
   }
 
@@ -52,7 +59,13 @@ $(document).ready(function() {
     $counter.addClass('activated');
     setTimeout(function() {
       $counter.removeClass('activated');
-    }, 300 )
+    }, 300 );
+  }
+
+  function updateAdminMenu($catLink) {
+    $('.admin-cat-name-input').val(this.$hiddenCatName.html());
+    $('.admin-img-src-input').val(this.$hiddenImgSrc.html());
+    $('.admin-clicks-input').val(this.$hiddenCat.attr('clicks'));
   }
 
   function updateCounter($catLink) {
@@ -87,5 +100,6 @@ $(document).ready(function() {
         this.$catImg.attr('src', 'http://goo.gl/ZWQUtT');
         break;
     }
+    this.$hiddenImgSrc.html(this.$catImg.attr('src'));
   }
 });
