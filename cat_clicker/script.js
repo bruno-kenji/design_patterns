@@ -6,17 +6,16 @@ $(document).ready(function() {
     this.$catLink = [];
 
     for (var i = 0; i < numOfCats; i++) {
-      this.$catLink[i] = $('<li>').addClass('cat-link').attr('id', 'cat-link-' + i).attr('clicks', 0).html('Kitty ' + i);
+      this.$catLink[i] = $('<li>').addClass('cat-link').attr('id', 'cat-link-' + i).attr('clicks', 0).attr('imgSrc', "").html('Kitty ' + i);
 
       $('.cat-list').append(this.$catLink[i]);
+      updateImageByCatName(this.$catLink[i]);
     }
 
     this.$hiddenCatName = $("<div>").attr('id', 'hidden-cat-name').html("").hide();
-    this.$hiddenImgSrc  = $("<div>").attr('id', 'hidden-img-src').html("").hide();
     this.$hiddenCat     = $("<div>").attr('id', 'hidden-cat').html("").hide();
 
     $('.cat-wrapper').append(this.$hiddenCatName);
-    $('.cat-wrapper').append(this.$hiddenImgSrc);
     $('.cat-wrapper').append(this.$hiddenCat);
   }
 
@@ -26,6 +25,7 @@ $(document).ready(function() {
     $('#cat-pic').on("click", function() {
       increaseCounter();      
       counterAnimation($(this));
+      updateAdminMenu();
     });
     
     $('.cat-link').on("click", function(e) {
@@ -33,8 +33,8 @@ $(document).ready(function() {
 
       updateCounter($(this));
       updateName(catName);
-      updateImage(catName);
-      updateAdminMenu($(this));
+      updateImageByImgSrc($(this).attr('imgSrc'));
+      updateAdminMenu();
     });
 
     $('.admin-btn').on('click', function() {
@@ -44,6 +44,11 @@ $(document).ready(function() {
     $('.admin-cancel-btn').on('click', function() {
       $('.admin-menu').addClass('hide');
       updateAdminMenu(self.$hiddenCat);
+    });
+
+    $('.admin-save-btn').on('click', function() {
+      $('.admin-menu').addClass('hide');
+      updateCat();
     });
   }
 
@@ -69,10 +74,24 @@ $(document).ready(function() {
     }, 300 );
   }
 
-  function updateAdminMenu($catLink) {
+  function updateAdminMenu() {
     $('.admin-cat-name-input').val(this.$hiddenCatName.html());
-    $('.admin-img-src-input') .val(this.$hiddenImgSrc.html());
+    $('.admin-img-src-input') .val(this.$hiddenCat.attr('imgSrc'));
     $('.admin-clicks-input')  .val(this.$hiddenCat.attr('clicks'));
+  }
+
+  function updateCat() {
+    var clicks = $('.admin-clicks-input')  .val();
+    var imgSrc = $('.admin-img-src-input') .val();
+    var name   = $('.admin-cat-name-input').val();
+
+    this.$hiddenCat.attr('clicks', clicks);
+    this.$hiddenCat.html(name);
+    this.$hiddenCatName.html(name);
+
+    updateCounter(this.$hiddenCat);
+    updateName(name);
+    updateImageByImgSrc(imgSrc);
   }
 
   function updateCounter($catLink) {
@@ -87,26 +106,32 @@ $(document).ready(function() {
     $('.cat-wrapper').find('h3').html(this.$hiddenCatName.html());
   }
 
-  function updateImage(catName) {
-    this.$catImg = $('.cat-wrapper').find('img');
+  function updateImageByImgSrc(imgSrc) {
+    this.$hiddenCat.attr('imgSrc', imgSrc);
 
-    switch(catName) {
+    $('.cat-wrapper').find('img').attr('src', imgSrc);
+  }
+
+  function updateImageByCatName($catLink) {
+    var catImg = $('.cat-wrapper').find('img');
+    var name = $catLink.html();
+
+    switch(name) {
       case "Kitty 0":
-        this.$catImg.attr('src', 'https://goo.gl/2YWnjj');
+        $catLink.attr('imgSrc', 'https://goo.gl/2YWnjj');
         break;
       case "Kitty 1":
-        this.$catImg.attr('src', 'https://goo.gl/2Wm1Qb');
+        $catLink.attr('imgSrc', 'https://goo.gl/2Wm1Qb');
         break;
       case "Kitty 2":
-        this.$catImg.attr('src', 'https://goo.gl/z9QPEZ');
+        $catLink.attr('imgSrc', 'https://goo.gl/z9QPEZ');
         break;
       case "Kitty 3":
-        this.$catImg.attr('src', 'http://goo.gl/dpdWr3');
+        $catLink.attr('imgSrc', 'http://goo.gl/dpdWr3');
         break;
       case "Kitty 4":
-        this.$catImg.attr('src', 'http://goo.gl/ZWQUtT');
+        $catLink.attr('imgSrc', 'http://goo.gl/ZWQUtT');
         break;
     }
-    this.$hiddenImgSrc.html(this.$catImg.attr('src'));
   }
 });
