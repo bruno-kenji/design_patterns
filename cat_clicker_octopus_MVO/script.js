@@ -64,6 +64,12 @@ $(document).ready(function() {
       model.currentCat = cat;
     },
 
+    updateCurrentCat: function(name, imgSrc, clickCount) {
+      model.currentCat.name       = name;
+      model.currentCat.imgSrc     = imgSrc;
+      model.currentCat.clickCount = clickCount;
+    },
+
     increaseCounter: function() {
       model.currentCat.clickCount++;
       catWrapperView.updateCounter();
@@ -79,7 +85,6 @@ $(document).ready(function() {
   };
 
   var catListView = {
-
     init: function() {
       this.$catList = $('.cat-list');
 
@@ -172,6 +177,7 @@ $(document).ready(function() {
 
     setupBindings: function() {
       var self = this;
+      var currentCat = octopus.getCurrentCat();
 
       this.$adminButton.on('click', function() {
         self.$adminMenu.toggleClass('hide');
@@ -180,6 +186,15 @@ $(document).ready(function() {
       this.$cancelButton.on('click', function() {
         self.$adminMenu.addClass('hide');
         self.render();
+      });
+
+      this.$saveButton.on('click', function() {
+        var name   = self.$catNameInput.val();
+        var imgSrc = self.$imgSrcInput .val();
+        var clicks = self.$clicksInput .val();
+
+        self.$adminMenu.addClass('hide');
+        octopus.updateCurrentCat(name, imgSrc, clicks);
       });
     },
 
